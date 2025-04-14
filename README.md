@@ -1,28 +1,28 @@
-# VSCode Commands Executor
+# Roo Executor
 
-Enables the execution of vscode commands on open startup vscode via the vscode:// URI,
-keyboard shortcuts and based on workspace conditions
+Enables the execution of VSCode commands and Roo tasks via the vscode:// URI, keyboard shortcuts and based on workspace conditions.
 
 ## Features
 
 ### Executing commands via the vscode:// URI
 
 ```sh
-code --open-url 'vscode://ionutvmi.vscode-commands-executor/runCommands?data=[{"id": "workbench.action.editorLayoutThreeRows"}, {"id": "workbench.action.files.newUntitledFile"}, { "id": "default:type", "args": { "text": "Very nice !" } }]'
+code --open-url 'vscode://pablof7z.roo-executor/runCommands?data=[{"id": "workbench.action.editorLayoutThreeRows"}, {"id": "workbench.action.files.newUntitledFile"}, { "id": "default:type", "args": { "text": "Very nice !" } }]'
 
-code --open-url 'vscode://ionutvmi.vscode-commands-executor/openFiles?data=[{"path": "C:/tmp/test.txt" }]&layout=TwoColumns'
+code --open-url 'vscode://pablof7z.roo-executor/openFiles?data=[{"path": "C:/tmp/test.txt" }]&layout=TwoColumns'
 
-code --open-url 'vscode://ionutvmi.vscode-commands-executor/openFiles?data=[{"path": "C:/tmp/test.txt", "column": "Two" }]&layout=TwoColumns&newWindow=true'
+code --open-url 'vscode://pablof7z.roo-executor/openFiles?data=[{"path": "C:/tmp/test.txt", "column": "Two" }]&layout=TwoColumns&newWindow=true'
 
+code --open-url 'vscode://pablof7z.roo-executor/runRoo?file=/path/to/your/file.txt'
 ```
 
 Depending on what terminal you are using you might need to url encode the data:
 
 ```powershell
 # To work correctly in powershell
-code --open-url 'vscode://ionutvmi.vscode-commands-executor/runCommands?data=%5B%7B%22id%22%3A%20%22workbench.action.editorLayoutThreeRows%22%7D%2C%20%7B%22id%22%3A%20%22workbench.action.files.newUntitledFile%22%7D%2C%20%7B%20%22id%22%3A%20%22default%3Atype%22%2C%20%22args%22%3A%20%7B%20%22text%22%3A%20%22Very%20nice%20%21%22%20%7D%20%7D%5D'
+code --open-url 'vscode://pablof7z.roo-executor/runCommands?data=%5B%7B%22id%22%3A%20%22workbench.action.editorLayoutThreeRows%22%7D%2C%20%7B%22id%22%3A%20%22workbench.action.files.newUntitledFile%22%7D%2C%20%7B%20%22id%22%3A%20%22default%3Atype%22%2C%20%22args%22%3A%20%7B%20%22text%22%3A%20%22Very%20nice%20%21%22%20%7D%20%7D%5D'
 
-code --open-url """vscode://ionutvmi.vscode-commands-executor/openFiles?data=%5B%7B%22path%22%3A%20%22C%3A%2Ftmp%2Ftest.txt%22%20%7D%5D&layout=TwoColumns"""
+code --open-url """vscode://pablof7z.roo-executor/openFiles?data=%5B%7B%22path%22%3A%20%22C%3A%2Ftmp%2Ftest.txt%22%20%7D%5D&layout=TwoColumns"""
 
 ```
 
@@ -99,6 +99,16 @@ Parameters:
 | :-------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | data      | Yes      | Array of objects - contains the list of commands to be executed. <br/><br/>A commands consists of the following:<br/> - `id` - Required - the id of the command that will be executed<br/>- `args` - Optional - The arguments of the command. |
 | newWindow | No       | Boolean - If `false` the commands are executed in the topmost vscode window. <br/> If `true` it will first open a new window then open the files.                                                                                             |
+
+### runRoo
+
+Reads a file and triggers the roo-cline.newTask command with the file content as the prompt.
+
+Parameters:
+
+| Parameter | Required | Description                                          |
+| :-------- | :------- | :--------------------------------------------------- |
+| file      | Yes      | Path to the file whose content will be used as prompt |
 
 ## Executing commands on vscode startup (initial open of vscode)
 

@@ -1,14 +1,14 @@
 {
-  "name": "vscode-commands-executor",
-  "displayName": "Commands Executor",
-  "description": "Enables the execution of vscode commands on open startup vscode via the vscode:// URI, keyboard shortcuts and based on workspace conditions.",
-  "version": "1.1.0",
-  "publisher": "ionutvmi",
+  "name": "roo-executor",
+  "displayName": "Roo Executor",
+  "description": "Enables the execution of VSCode commands and Roo tasks via the vscode:// URI, keyboard shortcuts and based on workspace conditions.",
+  "version": "1.0.0",
+  "publisher": "pablof7z",
   "engines": {
     "vscode": "^1.73.0"
   },
   "author": {
-    "name": "Mihai Vilcu"
+    "name": "Pablo Fernandez"
   },
   "categories": [
     "Other"
@@ -17,7 +17,8 @@
     "CLI",
     "Command Line",
     "Terminal",
-    "Commands"
+    "Commands",
+    "Roo"
   ],
   "icon": "images/icon.png",
   "activationEvents": [
@@ -72,12 +73,12 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/ionutvmi/vscode-commands-executor/issues",
-    "email": "ionutvmi@gmail.com"
+    "url": "https://github.com/pablof7z/vscode-roo-executor/issues",
+    "email": ""
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionutvmi/vscode-commands-executor.git"
+    "url": "https://github.com/pablof7z/vscode-roo-executor.git"
   },
   "main": "./out/extension.js",
   "scripts": {

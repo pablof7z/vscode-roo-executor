@@ -10,7 +10,7 @@ export default class CommandsProcessor {
     this.commands.push(command);
   }
 
-  parseCommand(commandData: CommandData) {
+  async parseCommand(commandData: CommandData) {
     try {
       switch (commandData.command) {
         case "openFiles":
@@ -23,6 +23,22 @@ export default class CommandsProcessor {
           commandData.args.data.forEach((action: any) => {
             this.registerCommand(new VSCodeCommand(action.id, action.args));
           });
+          break;
+
+        case "runRoo":
+          if (!commandData.args.file) {
+            throw new Error("File parameter is required for runRoo command");
+          }
+          // Read the file content and pass it as prompt
+          try {
+            const content = await vscode.workspace.fs.readFile(vscode.Uri.file(commandData.args.file));
+            this.registerCommand(
+              new VSCodeCommand("roo-cline.newTask", { prompt: content.toString() })
+            );
+            await this.executeCommands();
+          } catch (error: any) {
+            vscode.window.showErrorMessage(`Failed to read file: ${error.message}`);
+          }
           break;
 
         default:
