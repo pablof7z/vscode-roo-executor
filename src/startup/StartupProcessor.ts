@@ -1,33 +1,26 @@
 import * as vscode from "vscode";
-import { RuleConfiguration } from "./RuleConfiguration";
 import StartupRule from "./StartupRule";
+import { RuleConfiguration } from "./RuleConfiguration";
 
 export default class StartupProcessor {
   private rules: StartupRule[] = [];
 
   readConfigurations() {
-    const config = vscode.workspace.getConfiguration(
-      "vscode-commands-executor"
-    );
-    const rulesList = config.get("startupRules") as RuleConfiguration[];
+    const config = vscode.workspace.getConfiguration();
+    const rules = config.get<RuleConfiguration[]>("roo-executor.startupRules");
 
-    this.rules = rulesList.map((ruleConfig) => {
-      return new StartupRule(ruleConfig);
-    });
+    if (!rules) {
+      return;
+    }
+
+    this.rules = rules.map((rule) => new StartupRule(rule));
   }
 
   async runCommands() {
-    try {
-      for (const rule of this.rules) {
-        if (await rule.isApplicable()) {
-          await rule.executeCommands();
-        }
+    for (const rule of this.rules) {
+      if (await rule.isApplicable()) {
+        await rule.executeCommands();
       }
-    } catch (e) {
-      console.error(e);
-      vscode.window.showErrorMessage(
-        "Failed to executed the startup commands: " + e
-      );
     }
   }
 }
