@@ -115,7 +115,7 @@ Parameters:
 ```jsonc
 // settings.json
 // run a command on every startup
-  "vscode-commands-executor.startupRules": [
+  "roo-executor.startupRules": [
         {
             "commands": [
                 { "id": "workbench.action.files.newUntitledFile" }
@@ -129,7 +129,7 @@ Parameters:
 ```jsonc
 // settings.json
 // run a sequence of commands on startup if the workspace contains test.json
-  "vscode-commands-executor.startupRules": [
+  "roo-executor.startupRules": [
         {
             "commands": [
                 { "id": "workbench.action.files.newUntitledFile" },
@@ -149,7 +149,7 @@ Parameters:
 ```jsonc
 // settings.json
 // run a sequence of commands on startup if the one of the workspace folders is test
-  "vscode-commands-executor.startupRules": [
+  "roo-executor.startupRules": [
       {
           "commands": [
               { "id": "workbench.action.files.newUntitledFile" },
@@ -173,7 +173,7 @@ Parameters:
 ```jsonc
 // settings.json
 // run a command with complex arguments, no notification is displayed if the message is empty/not specified
-  "vscode-commands-executor.startupRules": [
+  "roo-executor.startupRules": [
       {
           "conditions": ["always"],
           "commands": [
