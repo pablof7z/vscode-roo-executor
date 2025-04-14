@@ -21,7 +21,7 @@ export async function activate(context: vscode.ExtensionContext) {
   uriHandler.register();
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("vscode-commands-executor.run", (args) => {
+    vscode.commands.registerCommand("roo-executor.run", (args) => {
       if (args && args.args && args.args.newWindow) {
         context.globalState.update("postponedCommand", args);
 

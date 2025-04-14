@@ -35,7 +35,7 @@ To register custom keyboard shortcuts for a groups of commands follow the exampl
   // keybindings.json
   {
     "key": "ctrl+alt+/",
-    "command": "vscode-commands-executor.run",
+    "command": "roo-executor.run",
     "args": {
       "command": "openFiles",
       "args": {
@@ -51,7 +51,7 @@ To register custom keyboard shortcuts for a groups of commands follow the exampl
   },
   {
     "key": "ctrl+alt+\\",
-    "command": "vscode-commands-executor.run",
+    "command": "roo-executor.run",
     "args": {
       "command": "runCommands",
       "args": {
