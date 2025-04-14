@@ -26,11 +26,11 @@
   ],
   "contributes": {
     "configuration": {
-      "title": "Commands Executor",
-      "description": "Configurations for the command executor execution.",
+      "title": "Roo Executor",
+      "description": "Configurations for the Roo executor execution.",
       "type": "object",
       "properties": {
-        "vscode-commands-executor.startupRules": {
+        "roo-executor.startupRules": {
           "type": "array",
           "title": "Startup Commands Rules",
           "default": [],

@@ -216,7 +216,6 @@ Initial Release
 
 ## Author
 
-Mihai Ionut Vilcu
+Pablo Fernandez
 
-- [github/ionutvmi](https://github.com/ionutvmi)
-- [twitter/mihai_vlc](http://twitter.com/mihai_vlc)
+- [github/pablof7z](https://github.com/pablof7z)
