@@ -26,6 +26,7 @@ export default class CommandsProcessor {
           break;
 
         case "runRoo":
+        case "runRooInWorkspace":
           if (!commandData.args.file) {
             throw new Error("File parameter is required for runRoo command");
           }

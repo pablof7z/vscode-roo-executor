@@ -14,6 +14,8 @@ code --open-url 'vscode://pablof7z.roo-executor/openFiles?data=[{"path": "C:/tmp
 code --open-url 'vscode://pablof7z.roo-executor/openFiles?data=[{"path": "C:/tmp/test.txt", "column": "Two" }]&layout=TwoColumns&newWindow=true'
 
 code --open-url 'vscode://pablof7z.roo-executor/runRoo?file=/path/to/your/file.txt'
+
+code <project_path> --reuse-window --command "roo-executor.runRooInWorkspace" --args "<task_file_path>"
 ```
 
 Depending on what terminal you are using you might need to url encode the data:
@@ -109,6 +111,16 @@ Parameters:
 | Parameter | Required | Description                                          |
 | :-------- | :------- | :--------------------------------------------------- |
 | file      | Yes      | Path to the file whose content will be used as prompt |
+
+### runRooInWorkspace
+
+Executes the runRoo command in the current workspace.
+
+Parameters:
+
+| Parameter | Required | Description                                          |
+| :-------- | :------- | :--------------------------------------------------- |
+| filePath  | Yes      | Path to the file whose content will be used as prompt |
 
 ## Executing commands on vscode startup (initial open of vscode)
 

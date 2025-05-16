@@ -36,6 +36,17 @@ export async function activate(context: vscode.ExtensionContext) {
     })
   );
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand("roo-executor.runRooInWorkspace", (filePath: string) => {
+      const commandData = {
+        command: "runRoo",
+        args: { file: filePath }
+      };
+      commandsProcessor.parseCommand(commandData);
+      commandsProcessor.executeCommands();
+    })
+  );
+
   const startupProcessor = new StartupProcessor();
   startupProcessor.readConfigurations();
   startupProcessor.runCommands();
