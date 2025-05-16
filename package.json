@@ -2,7 +2,7 @@
   "name": "roo-executor",
   "displayName": "Roo Executor",
   "description": "Enables the execution of VSCode commands and Roo tasks via the vscode:// URI, keyboard shortcuts and based on workspace conditions.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "pablof7z",
   "engines": {
     "vscode": "^1.73.0"
