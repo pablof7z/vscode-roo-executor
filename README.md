@@ -75,6 +75,10 @@ To register custom keyboard shortcuts for a groups of commands follow the exampl
 ]
 ```
 
+### Watching for changes to .roo-trigger file
+
+The extension now supports watching for changes to a `.roo-trigger` file located at the root of the workspace. When the `.roo-trigger` file is created or modified, the extension will read its contents, validate the path, run the Roo task, and delete the `.roo-trigger` file after execution.
+
 ## Supported commands
 
 ### openFiles

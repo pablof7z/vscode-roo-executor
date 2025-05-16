@@ -39,6 +39,41 @@ export async function activate(context: vscode.ExtensionContext) {
   const startupProcessor = new StartupProcessor();
   startupProcessor.readConfigurations();
   startupProcessor.runCommands();
+
+  watchRooTriggerFile(context, commandsProcessor);
+}
+
+function watchRooTriggerFile(context: vscode.ExtensionContext, commandsProcessor: CommandsProcessor) {
+  const watcher = vscode.workspace.createFileSystemWatcher("**/.roo-trigger");
+
+  watcher.onDidCreate(() => processRooTriggerFile(commandsProcessor));
+  watcher.onDidChange(() => processRooTriggerFile(commandsProcessor));
+
+  context.subscriptions.push(watcher);
+}
+
+async function processRooTriggerFile(commandsProcessor: CommandsProcessor) {
+  const triggerFilePath = vscode.workspace.workspaceFolders?.[0].uri.fsPath + "/.roo-trigger";
+  if (!triggerFilePath) {
+    return;
+  }
+
+  try {
+    const content = await vscode.workspace.fs.readFile(vscode.Uri.file(triggerFilePath));
+    const taskFilePath = content.toString().trim();
+
+    if (!taskFilePath) {
+      vscode.window.showErrorMessage("The .roo-trigger file is empty or invalid.");
+      return;
+    }
+
+    await commandsProcessor.parseCommand({ command: "runRoo", args: { file: taskFilePath } });
+    await commandsProcessor.executeCommands();
+
+    await vscode.workspace.fs.delete(vscode.Uri.file(triggerFilePath));
+  } catch (error: any) {
+    vscode.window.showErrorMessage(`Failed to process .roo-trigger file: ${error.message}`);
+  }
 }
 
 // this method is called when your extension is deactivated
